@@ -1,0 +1,23 @@
+Configuration:
+  status: debug
+
+  Appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "%d{MM-dd-yyyy HH:mm:ss.SSS} %-5level %c{1.} - %msg%n"
+
+  Loggers:
+    Root:
+      level: error
+      AppenderRef:
+        - ref: CONSOLE
+    Logger:
+       name: com.deere.isg.tx
+       additivity: false
+       level: debug
+       AppenderRef:
+         ref: CONSOLE
+
+        #- ref: APPLICATION
