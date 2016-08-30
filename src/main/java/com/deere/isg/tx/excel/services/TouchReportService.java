@@ -10,8 +10,10 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.Path;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -26,6 +28,8 @@ public class TouchReportService {
     @Qualifier(value = "TouchReportProcessor")
     ExcelProcessor<TouchReportBean> processor;
 
+    @Value("${excel.dest.dir}")
+    String destPath;
 
     public List<Integer> urgentCols = Arrays.asList(0, 1, 2);
     public List<Integer> highCols = Arrays.asList(4, 5, 6);
@@ -35,7 +39,11 @@ public class TouchReportService {
 
     public List<String> casdHeaderList = Arrays.asList("Ticket", "Groups", "Days");
 
-    public void createTouchReport(List<TouchReportBean> touchReportBeanList) {
+    public void createTouchReport(List<TouchReportBean> touchReportBeanList, Path path) {
+
+        String name = path.toFile().getName();
+
+        processor.setExcelPath(destPath.concat("/").concat(name));
         processor.loadExcel(true);
         final XSSFWorkbook workbook = processor.getWorkBook();
         XSSFSheet sheet = workbook.createSheet(processor.getWorksheetName());
@@ -237,4 +245,11 @@ public class TouchReportService {
         CellUtil.setAlignment(cell, workbook, CellStyle.ALIGN_CENTER);
     }
 
+    public String getDestPath() {
+        return destPath;
+    }
+
+    public void setDestPath(String destPath) {
+        this.destPath = destPath;
+    }
 }

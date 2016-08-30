@@ -2,8 +2,10 @@ package com.deere.isg.tx.excel;
 
 import com.deere.isg.tx.excel.config.ExcelConfig;
 import com.deere.isg.tx.excel.processor.ExcelProcessor;
+import com.deere.isg.tx.sp10.SharePointUploadDocument;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.test.ConfigFileApplicationContextInitializer;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +31,8 @@ public class BaseTest {
         return new ExcelProcessor<TestClass>(TestClass.class);
     }
 
+    @Autowired
+    private SharePointUploadDocument uploadDocument;
 
     @Test
     public void contextLoads() {

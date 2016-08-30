@@ -8,12 +8,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
  * Created by bv80586 on 12/29/2015.
  */
 @Configuration
-@ComponentScan(basePackages = {"com.deere.isg.tx.excel"})
+@ComponentScan(basePackages = {"com.deere.isg.tx"})
 @PropertySource("classpath:excel-client-${spring.profiles.active}.properties")
 @EnableConfigurationProperties
 public class ExcelConfig<T> {
@@ -31,5 +32,10 @@ public class ExcelConfig<T> {
     public ExcelProcessor<TouchReportBean> getTouchReportProcessor() {
         ExcelProcessor<TouchReportBean> processor = new ExcelProcessor<>(TouchReportBean.class);
         return processor;
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
+        return new PropertySourcesPlaceholderConfigurer();
     }
 }
