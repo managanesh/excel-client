@@ -51,6 +51,7 @@ public class IMAPSMailComponent {
             });
 
             store = session.getStore("imaps");
+            System.out.println("::"+username+"::"+passkey+"::");
             store.connect(host, username, passkey);
 
         } catch (Exception e) {
