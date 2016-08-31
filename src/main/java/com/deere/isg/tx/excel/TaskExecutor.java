@@ -45,7 +45,12 @@ public class TaskExecutor {
 
     @PostConstruct
     public void execute() {
-
+        try {
+            Files.createDirectories(Paths.get(sourcePath));
+            Files.createDirectories(Paths.get(destPath));
+        }catch (Exception e){
+            throw new RuntimeException(e);
+        }
         mailComponent.saveAttachments("Ticket Activity By Resolve Date");
 
         boolean updateFolder = true;
