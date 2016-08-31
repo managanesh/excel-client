@@ -62,7 +62,7 @@ public class IMAPSMailComponent {
     public Folder openFolder(boolean isWritable) {
 
         try {
-            store.connect(host, username, passkey);
+//            store.connect(host, username, passkey);
             Folder folder = Arrays.stream(store.getDefaultFolder().list("*"))
                     .filter(f -> f.getFullName().equalsIgnoreCase(folderName))
                     .findFirst()
@@ -80,7 +80,7 @@ public class IMAPSMailComponent {
     public Folder closeFolder(boolean canPersist) {
 
         try {
-            store.connect(host, username, passkey);
+  //          store.connect(host, username, passkey);
             Folder folder = Arrays.stream(store.getDefaultFolder().list("*"))
                     .filter(f -> f.getFullName().equalsIgnoreCase(folderName))
                     .findFirst()
