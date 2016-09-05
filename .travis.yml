@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk8
 sudo: false
-script: mvn clean spring-boot:run -DskipTests -Dimaps.mail.username=managanesh@gmail.com -Dimaps.mail.password=Google123$ -Dimaps.mail.host=imap.gmail.com -Dspring.profiles.active=junit -Dspring.main.sources=com.deere.isg.tx.excel.config.ExcelConfig
+script: mvn clean spring-boot:run -DskipTests -Dimaps.mail.username=${user} -Dimaps.mail.password=${password} -Dimaps.mail.host=${host} -Dspring.profiles.active=junit -Dspring.main.sources=com.deere.isg.tx.excel.config.ExcelConfig
