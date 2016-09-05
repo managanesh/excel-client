@@ -2,4 +2,12 @@ language: java
 jdk:
   - oraclejdk8
 sudo: false
+
 script: mvn clean spring-boot:run -DskipTests -Dimaps.mail.username=${user} -Dimaps.mail.password=${password} -Dimaps.mail.host=${host} -Dspring.profiles.active=junit -Dspring.main.sources=com.deere.isg.tx.excel.config.ExcelConfig
+notifications:
+  email:
+    recipients:
+      - ganesh.vallabhaneni@yash.com
+      - managanesh@gmail.com
+    on_success: always
+
