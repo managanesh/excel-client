@@ -9,5 +9,5 @@ notifications:
     recipients:
       - ganesh.vallabhaneni@yash.com
       - managanesh@gmail.com
-    on_success: always
+
 
